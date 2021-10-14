@@ -1,0 +1,21 @@
+<section id="page-home">
+
+    <div class="row">
+        <label for="search" class="form-label">Buscador</label>
+        <input name="search" class="form-control" type="text" [(ngModel)]="searchString">
+    </div>
+
+    <div 
+        class="row mt-2"
+        *ngIf="listContentData"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="loadData()">
+        
+        <div *ngFor="let item of listContentData | filterContent:searchString:keySearch" class="col-xs-12 col-sm-4 col-md-3 mt-2">
+            <img class="rounded mx-auto d-block" [src]="item.download_url" [alt]="item.author">
+        </div>
+    </div>
+    
+</section>
